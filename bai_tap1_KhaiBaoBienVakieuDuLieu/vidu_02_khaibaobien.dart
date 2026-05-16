@@ -20,5 +20,12 @@ void main (){
   Object tuoi3 = 22;
   Object diem3 = 8.5;
 
-}
+
+  int a =20;
+  int b = 40;
+
+  int sum = a + b;
+    print("Tổng của a và b là: $sum");
+  
+} 
 
