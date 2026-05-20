@@ -143,4 +143,11 @@ void main() {
   bool hasErrors() {
     return formErrors.isNotEmpty;
   }
+
+  // 5. Lưu trữ thông tin người dùng
+  Map<String, dynamic> userProfile = {
+    'name': 'Tung',
+    'age': 20,
+    'email': 'tung@gmail.com'
+  };
 }
