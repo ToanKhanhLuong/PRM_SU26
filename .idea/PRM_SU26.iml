@@ -426,8 +426,16 @@
       <excludeFolder url="file://$MODULE_DIR$/instagram_bonus/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/instagram_bonus/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/instagram_bonus/build" />
+      <excludeFolder url="file://$MODULE_DIR$/bonus2_flutter/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/bonus2_flutter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/bonus2_flutter/build" />
+      <excludeFolder url="file://$MODULE_DIR$/myappfpt/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/myappfpt/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/myappfpt/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Dart SDK" level="project" />
+    <orderEntry type="library" name="Dart Packages" level="project" />
   </component>
 </module>

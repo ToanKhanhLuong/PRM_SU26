@@ -14,6 +14,8 @@ class HomeScreen extends StatelessWidget {
       {'title': 'MyColumnAndRow', 'route': '/MyColumnAndRow'},
       {'title': 'MyContainer', 'route': '/MyContainer'},
       {'title': 'MyScaffold', 'route': '/MyScaffold'},
+      {'title': 'MyGestures', 'route': '/MyGestures'},
+      {'title': 'MyTextField', 'route': '/MyTextField'},
     ];
 
     return Scaffold(

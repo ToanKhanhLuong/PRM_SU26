@@ -8,7 +8,8 @@ import 'MyColumnAndRow.dart';
 import 'MyButton.dart';
 import 'MyButton2.dart';
 import 'MyButton3.dart';
-
+import 'MyGestures.dart';
+import 'MyTextField.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -31,6 +32,8 @@ class MyApp extends StatelessWidget {
         '/MyButton2': (context) => const MyButton2(),
         '/MyButton3': (context) => const MyButton3(),
         '/MyScaffold': (context) => const Myscaffold(),
+        '/MyGestures': (context) => const MyGestures(),
+        '/MyTextField': (context) => const MyTextField(),
       },
     );
   }

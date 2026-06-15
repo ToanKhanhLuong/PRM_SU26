@@ -33,6 +33,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _screens[_selectIndex],
+
       bottomNavigationBar:Container(
         decoration: const BoxDecoration(
           border: Border(
@@ -42,6 +43,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             ),
           ),
         ),
+
       child:  BottomNavigationBar(
         backgroundColor: Colors.white,
 

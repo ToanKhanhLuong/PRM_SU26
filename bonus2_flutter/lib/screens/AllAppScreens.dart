@@ -9,10 +9,7 @@ class AllAppScreens extends StatefulWidget {
 
 class _AllAppScreensState extends State<AllAppScreens> {
   final ScrollController _scrollController = ScrollController();
-  final TextEditingController _searchController = TextEditingController();
-  String _searchQuery = "";
 
-  // Define the feature items with category, title, description, and icons matching the screenshots
   final List<Map<String, String>> _allFeatures = [
     {
       'category': 'WORK',
@@ -109,26 +106,16 @@ class _AllAppScreensState extends State<AllAppScreens> {
   @override
   void dispose() {
     _scrollController.dispose();
-    _searchController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // Filter features based on search query
-    final filteredFeatures = _allFeatures.where((item) {
-      final title = item['title']!.toLowerCase();
-      final desc = item['desc']!.toLowerCase();
-      final category = item['category']!.toLowerCase();
-      final query = _searchQuery.toLowerCase();
-      return title.contains(query) || desc.contains(query) || category.contains(query);
-    }).toList();
-
-    // Extract unique categories present in filteredFeatures in defined order
-    final categoryOrder = ['WORK', 'UTILITIES', 'NEWS', 'WIKI', 'GAME'];
-    final activeCategories = categoryOrder.where((cat) {
-      return filteredFeatures.any((item) => item['category'] == cat);
-    }).toList();
+    // Group all features by category
+    final Map<String, List<Map<String, String>>> groupedFeatures = {};
+    for (var item in _allFeatures) {
+      groupedFeatures.putIfAbsent(item['category']!, () => []).add(item);
+    }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -136,7 +123,6 @@ class _AllAppScreensState extends State<AllAppScreens> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Search Bar & Grid Icon Row - FIXED AT TOP
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
               child: Row(
@@ -148,15 +134,9 @@ class _AllAppScreensState extends State<AllAppScreens> {
                         color: const Color(0xFFECEEF2),
                         borderRadius: BorderRadius.circular(1),
                       ),
-                      child: TextField(
-                        controller: _searchController,
-                        onChanged: (val) {
-                          setState(() {
-                            _searchQuery = val;
-                          });
-                        },
-                        style: const TextStyle(fontSize: 19),
-                        decoration: const InputDecoration(
+                      child: const TextField(
+                        style: TextStyle(fontSize: 19),
+                        decoration: InputDecoration(
                           hintText: "Type feature's name",
                           hintStyle: TextStyle(
                             color: Color(0xFF8E8E93),
@@ -215,43 +195,20 @@ class _AllAppScreensState extends State<AllAppScreens> {
                         ),
                       ),
 
-                      if (filteredFeatures.isEmpty)
-                        Padding(
-                          padding: const EdgeInsets.all(40.0),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.search_off_rounded, size: 48, color: Colors.grey.shade400),
-                                const SizedBox(height: 12),
-                                Text(
-                                  "No features found matching '$_searchQuery'",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(color: Colors.grey.shade600, fontSize: 15),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-
-                      // Dynamically render categories and their items
-                      for (var category in activeCategories) ...[
-                        _buildCategoryHeader(category),
-                        ListView.separated(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: filteredFeatures.where((item) => item['category'] == category).length,
-                          separatorBuilder: (context, index) => const Divider(
-                              height: 1,
-                              color: Color(0xFFF2F2F7),
-                              indent: 16,
-                              endIndent: 16,
-                          ),
-                          itemBuilder: (context, index) {
-                            final categoryItems = filteredFeatures.where((item) => item['category'] == category).toList();
-                            return _buildFeatureItem(context, categoryItems[index]);
-                          },
-                        ),
+                      for (var category in ['WORK', 'UTILITIES', 'NEWS', 'WIKI', 'GAME']) ...[
+                        if (groupedFeatures.containsKey(category)) ...[
+                          _buildCategoryHeader(category),
+                          for (var i = 0; i < groupedFeatures[category]!.length; i++) ...[
+                            _buildFeatureItem(context, groupedFeatures[category]![i]),
+                            if (i < groupedFeatures[category]!.length - 1)
+                              const Divider(
+                                height: 1,
+                                color: Color(0xFFF2F2F7),
+                                indent: 16,
+                                endIndent: 16,
+                              ),
+                          ],
+                        ],
                       ],
                       const SizedBox(height: 30),
                     ],
@@ -299,7 +256,6 @@ class _AllAppScreensState extends State<AllAppScreens> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Icon with circle background
             Container(
               width: 44,
               height: 44,
@@ -321,7 +277,6 @@ class _AllAppScreensState extends State<AllAppScreens> {
               ),
             ),
             const SizedBox(width: 14),
-            // Text Details
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

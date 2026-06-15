@@ -12,12 +12,10 @@ class ProfileScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Banner & Avatar Stack
             Stack(
               clipBehavior: Clip.none,
               alignment: Alignment.center,
               children: [
-                // Top Banner Image
                 Container(
                   height: bannerHeight,
                   width: double.infinity,
@@ -36,7 +34,6 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Circular Avatar with Camera overlay
                 Positioned(
                   bottom: -45,
                   child: Stack(
@@ -104,7 +101,6 @@ class ProfileScreen extends StatelessWidget {
             ),
             const SizedBox(height: 55),
 
-            // Profile info
             const Text(
               "Phạm Quang Khang (KHANGPQ3)",
               style: TextStyle(
@@ -124,7 +120,6 @@ class ProfileScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            // Menu Items List
             Column(
               children: [
                 _buildMenuItem(
@@ -172,7 +167,6 @@ class ProfileScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            // Footer Version
             const Text(
               "myFPT Version 5.9.10",
               style: TextStyle(
