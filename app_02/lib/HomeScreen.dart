@@ -16,6 +16,8 @@ class HomeScreen extends StatelessWidget {
       {'title': 'MyScaffold', 'route': '/MyScaffold'},
       {'title': 'MyGestures', 'route': '/MyGestures'},
       {'title': 'MyTextField', 'route': '/MyTextField'},
+      {'title': 'MyTextField2', 'route': '/MyTextField2'},
+      {'title': 'FormBasicDemo', 'route': '/FormBasicDemo'},
     ];
 
     return Scaffold(

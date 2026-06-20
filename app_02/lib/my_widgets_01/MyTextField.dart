@@ -110,6 +110,24 @@ tìm kiếm, đến nhập Liệu trong các ứng dụng phức tạp.
                   obscuringCharacter: "^",
                 ),
 
+                SizedBox(height: 30),
+                TextField(
+                  onChanged: (value){
+                  print("Dang Nhap: $value");
+                },
+
+                  onSubmitted: (value){
+                    print("Da Hoan Thanh Noi Dung");
+                  },
+                  
+                  decoration: InputDecoration(
+                    labelText: "Cau Hoi Bi Mat",
+                    border: OutlineInputBorder(),
+
+                  ),
+                  keyboardType: TextInputType.datetime,
+                ),
+
               ],
             ),
           ),
